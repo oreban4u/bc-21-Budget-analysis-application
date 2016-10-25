@@ -1,0 +1,39 @@
+<html>
+<head>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<div ng-app="">
+ 
+<p>Input something in the input box:</p>
+<p>Name: <input type="text" ng-model="name"></p>
+<p ng-bind="name"></p>
+
+</div>
+
+
+
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-database.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDAzKJCumVBRZ0AbZ_SvzgwVECPWxM5onI",
+    authDomain: "budget-analysis-app-b4ea5.firebaseapp.com",
+    databaseURL: "https://budget-analysis-app-b4ea5.firebaseio.com",
+    storageBucket: "budget-analysis-app-b4ea5.appspot.com",
+    messagingSenderId: "453059033916"
+  };
+  firebase.initializeApp(config);
+</script>
+</body>
+
+
+
+</html>
