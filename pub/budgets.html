@@ -1,0 +1,120 @@
+<html>
+	<head>
+		<title>
+            Budget Analysis App: Budget Item Entry
+        </title>
+        <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-database.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+        <script>
+	      // Initialize Firebase
+	      var config = {
+	        apiKey: "AIzaSyDAzKJCumVBRZ0AbZ_SvzgwVECPWxM5onI",
+	        authDomain: "budget-analysis-app-b4ea5.firebaseapp.com",
+	        databaseURL: "https://budget-analysis-app-b4ea5.firebaseio.com",
+	        storageBucket: "budget-analysis-app-b4ea5.appspot.com",
+	        messagingSenderId: "453059033916"
+	      };
+	      firebase.initializeApp(config);
+	      var database = firebase.database();
+	      
+	      function writeUserData(firstname, lastname, email) {
+	        database.ref('users/' + firstname +'_' + lastname).set({
+	            'firstname': firstname,
+	            'lastname': lastname,
+	            'email': email
+	        });
+	    	}
+	      function createBudgetEntry(entrytype, category, entryname, entryvalue){
+	    	var newEntryKey = database.ref().child('users/Oreoluwa_Banwo/budget_entries').push().key;
+	    	//alert(newEntryKey);
+	    	//console.log(arguments);
+
+
+	    	var starCountRef = database.ref('users/Oreoluwa_Banwo/budget_entries');
+	    	
+			starCountRef.once('value').then(function(snapshot) {
+				console.log(arguments, 'thenddd');
+				var result = snapshot.val();
+
+				console.log(result, 't65t66y');
+				console.log(result.length);
+			  //updateStarCount(postElement, snapshot.val());
+			}).catch(function(error){
+				console.log(error);
+			});
+
+			
+
+	    	database.ref('users/Oreoluwa_Banwo/budget_entries/'+ newEntryKey).update({
+	    		'entrytype': entrytype,
+	    		'category': category,
+	    		'entryname': entryname,
+	    		'entryvalue': parseInt(entryvalue,10)
+	        	})
+	        }
+
+	        $(document).ready(function() {
+	        	$('#income_entry').hide();
+	        	$('#expense_entry').hide();
+
+   				$('input[type="radio"]').click(function() {
+	    			if($(this).attr('id') == 'income_btn') {
+            			$('#income_entry').show();
+            			$('#expense_entry').hide();           
+       				}
+
+			       else {
+			            $('#income_entry').hide();
+			            $('#expense_entry').show();   
+			       }
+			   });
+			});
+
+        </script>
+	</head>
+	<body>
+		
+		<input id= "income_btn" type="radio" name="Entry Type" value='income'>Income
+		<input id= "expense_btn" type="radio" name="Entry Type" value='expense'>Expense
+
+        <form  id='income_entry'onsubmit="createBudgetEntry(document.getElementById('income_btn').value, document.getElementById('income_cat').value, document.getElementById('income_name').value, document.getElementById('income_amnt').value)" >
+            Income Category:<br>
+            <select name='income_category'id='income_cat'>
+            	<option value="null">--Select an option--</option>
+            	<option value="salary"> Salary </option>
+            	<option value="gift"> Gift </option>
+            </select><br>
+            Item Name:<br>
+            <input type="text" name="item_name" id='income_name'><br>
+            Item Amount:<br>
+            <input type="text" name="item_amount" id='income_amnt'><br>
+            <input type="submit" value="submit">
+        </form>
+        
+        <form  id ='expense_entry' onsubmit="createBudgetEntry(document.getElementById('expense_btn').value, document.getElementById('expense_cat').value, document.getElementById('expense_name').value, document.getElementById('expense_amnt').value)" >
+            Expense Category:<br>
+            <select name='expense_category'id='expense_cat'>
+            	<option value="null">--Select an option--</option>
+            	<option value="food"> Food </option>
+            	<option value="housing"> Housing </option>
+            	<option value="clothing"> Clothing </option>
+            	<option value="transport"> Transport </option>
+				<option value="utilities"> Utilities </option>
+            	<option value="insurance"> Insurance </option>
+            	<option value="giving"> Giving </option>
+            	<option value="savings"> Savings </option>
+            	<option value="lifestyle"> Lifestyle </option>
+            	
+            </select><br>
+            Expense Name:<br>
+            <input type="text" name="lastname" id= 'expense_name'><br>
+            Expense Amount:<br>
+            <input type="text" name="email" id= 'expense_amnt'><br>
+            <input type="submit" value="Submit">
+        </form>
+                           
+	</body>
+</html>
