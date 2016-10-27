@@ -3,7 +3,7 @@ var app = express();
 
 
 
-app.use(express.static('pub'));
+app.use(express.static('budgetanalysis'));
 
 // app.get('/', function (req, res) {
 //   res.send("pub/index.html");
