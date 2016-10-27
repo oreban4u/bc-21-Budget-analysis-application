@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <title>
+            Budget Analysis App: Budget Item Entry
+        </title>
+        <script src="js/functions.js"></script>   
+        <link rel="stylesheet" href="css/main.css">    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+  </head>
+  <body>
+    <script>
+    $(document).ready(function() {
+            $('#income_entry').hide();
+            $('#expense_entry').hide();
+
+          $('input[type="radio"]').click(function() {
+            if($(this).attr('id') == 'income_btn') {
+                  $('#income_entry').show();
+                  $('#expense_entry').hide();           
+              }
+
+             else {
+                  $('#income_entry').hide();
+                  $('#expense_entry').show();   
+             }
+         });
+      });
+
+    </script>
+    
+    <input id= "income_btn" type="radio" name="Entry Type" value='income'>Income
+    <input id= "expense_btn" type="radio" name="Entry Type" value='expense'>Expense
+
+        <form  id='income_entry'onsubmit="createBudgetEntry(document.getElementById('income_btn').value, document.getElementById('income_cat').value, document.getElementById('income_name').value, document.getElementById('income_amnt').value)" >
+            Income Category:<br>
+            <select name='income_category'id='income_cat'>
+              <option value="null">--Select an option--</option>
+              <option value="salary"> Salary </option>
+              <option value="gift"> Gift </option>
+            </select><br>
+            Item Name:<br>
+            <input type="text" name="item_name" id='income_name'><br>
+            Item Amount:<br>
+            <input type="text" name="item_amount" id='income_amnt'><br>
+            <input type="submit" value="submit">
+        </form>
+        
+        <form  id ='expense_entry' onsubmit="createBudgetEntry(document.getElementById('expense_btn').value, document.getElementById('expense_cat').value, document.getElementById('expense_name').value, document.getElementById('expense_amnt').value)" >
+            Expense Category:<br>
+            <select name='expense_category'id='expense_cat'>
+              <option value="null">--Select an option--</option>
+              <option value="food"> Food </option>
+              <option value="housing"> Housing </option>
+              <option value="clothing"> Clothing </option>
+              <option value="transport"> Transport </option>
+              <option value="utilities"> Utilities </option>
+              <option value="insurance"> Insurance </option>
+              <option value="giving"> Giving </option>
+              <option value="savings"> Savings </option>
+              <option value="lifestyle"> Lifestyle </option>
+              
+            </select><br>
+            Expense Name:<br>
+            <input type="text" name="lastname" id= 'expense_name'><br>
+            Expense Amount:<br>
+            <input type="text" name="email" id= 'expense_amnt'><br>
+            <input type="submit" value="Submit">
+        </form>
+
+
+
+        <ul id='budgetEntries'>
+          
+          
+        </ul>
+
+        <script>
+        
+        var budgetEntries = JSON.parse(localStorage.getItem('budgetEntries'));
+        var currentUser = localStorage.getItem('currentUser');
+
+        toPrint = budgetEntries[currentUser];
+        console.log(toPrint);
+          var size = toPrint.length;
+
+          for (i=0; i< size; i++){
+
+            var entry = document.createElement("li");
+            var node = document.createTextNode(''+toPrint[i][0]+ ' '+toPrint[i][1]+ ' '+toPrint[i][2]+ ' '+toPrint[i][3]+ '');
+            entry.appendChild(node);
+
+            var group = document.getElementById('budgetEntries');
+            group.appendChild(entry);
+          }
+        </script>
+                           
+  </body>
+</html>
