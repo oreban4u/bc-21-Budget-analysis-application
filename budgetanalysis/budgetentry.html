@@ -9,6 +9,7 @@
 
   </head>
   <body>
+    <p id='welcome'> </p>
     <script>
     $(document).ready(function() {
             $('#income_entry').hide();
@@ -26,6 +27,7 @@
              }
          });
       });
+
 
     </script>
     
@@ -74,25 +76,46 @@
           
           
         </ul>
+         <table id = 'testtable'>
+            <tr>
+              <th>EntryType</th>
+              <th>Category</th> 
+              <th>EntryName</th>
+              <th>Amount</th>
+
+            </tr>
+
+         </table>
 
         <script>
         
-        var budgetEntries = JSON.parse(localStorage.getItem('budgetEntries'));
-        var currentUser = localStorage.getItem('currentUser');
-
-        toPrint = budgetEntries[currentUser];
+        var budgetEntries = JSON.parse(window.localStorage.getItem('budgetEntries'));
+        var userData = JSON.parse(window.localStorage.getItem('userdata'));
+        var currentUser = window.localStorage.getItem('currentUser');
+        console.log (budgetEntries);
+        console.log (currentUser);
+        var toPrint = budgetEntries[currentUser];
         console.log(toPrint);
           var size = toPrint.length;
 
-          for (i=0; i< size; i++){
+          for (var i=0; i< size; i++){
 
-            var entry = document.createElement("li");
-            var node = document.createTextNode(''+toPrint[i][0]+ ' '+toPrint[i][1]+ ' '+toPrint[i][2]+ ' '+toPrint[i][3]+ '');
-            entry.appendChild(node);
+            var tableRow = document.createElement("tr");
+            // var trnode = document.createTextNode(tableData)            
 
-            var group = document.getElementById('budgetEntries');
-            group.appendChild(entry);
+            for (var j=0; j< toPrint[i].length; j++){
+              var tdnode = document.createTextNode(''+toPrint[i][j]);
+              tableData = document.createElement('td');
+              tableData.appendChild(tdnode);
+              tableRow.appendChild(tableData);
+              console.log(tdnode, tableData, tableRow);
+            }
+                        
+            var group = document.getElementById('testtable');
+            group.appendChild(tableRow);
+
           }
+          document.getElementById('welcome').innerHTML = 'Welcome '+userData[currentUser][0];
         </script>
                            
   </body>
