@@ -138,7 +138,56 @@ function createBudgetProjection(entrytype, category, entryvalue){
           }
  }
 
- function monthlyAnalyse(entries, projections){
+ function monthlyAnalyse(){
+    var budgetEntries = JSON.parse(localStorage.getItem('budgetEntries'));
+    var budgetProjections = JSON.parse(localStorage.getItem('budgetProjections'));
+    var currentUser = localStorage.getItem('currentUser')
+    var neededEntryData = budgetEntries[currentUser];
+    var neededProjectionData = budgetProjections[currentUser];
+    var group = document.getElementById('analyse');
+
+    for (var m=0; m < neededProjectionData.length; m++){
+      var category = neededProjectionData[m][1];
+      var projectiontotal = neededProjectionData[m][2];
+      var entrytotal = 0;
+      for (var n= 0; n< neededEntry; n++){
+        if(neededEntryData[n][1] === category){
+          entrytotal = entrytotal + parseInt(neededEntryData[n][3],10)
+        }
+        else{
+          continue;
+        }
+
+      }
+      if(projectiontotal > entrytotal){
+        //You have spent less than your budget welldone!
+        var diff = projectiontotal - entrytotal
+        var node = document.createTextNode('For '+category+' You are under budget by '+diff+ ' welldone!');
+        var entry = document.createElement('li');
+        entry.appendChild(node);
+        group.appendChild(entry);
+
+      }
+      else if(projectiontotal < entrytotal){
+        //You have spent more than your budget :(!
+        var diff =  entrytotal - projectiontotal
+        var node = document.createTextNode('For '+category+' You are over budget by '+diff+ ' :(');
+        var entry = document.createElement('li');
+        entry.appendChild(node);
+        group.appendChild(entry);
+
+      }
+
+      else{
+        //You have spent exactly what you budgeted welldone!
+        
+        var node = document.createTextNode('For '+category+' You have spent exactly what you budgeted welldone!');
+        var entry = document.createElement('li');
+        entry.appendChild(node);
+        group.appendChild(entry); 
+      }
+    
+    }
 
 
  }
