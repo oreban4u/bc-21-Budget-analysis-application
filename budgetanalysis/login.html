@@ -1,0 +1,26 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  
+  <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+  <form onsubmit="event.preventDefault(); login(document.getElementById('e_mail').value, document.getElementById('password').value)">
+
+    <h1>Login</h1>
+
+    <fieldset>
+      <label for="e_mail">Email Address:</label>
+      <input type="email" id="e_mail" name="user_email">
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="user_password">
+      
+    </fieldset>
+
+    <button type="submit">Login</button>
+  </form>

@@ -1,0 +1,115 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget Projections</title>
+  <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/main.css">
+  <script src='js/functions.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+<body>
+  <p id='welcomeproj'> </p>
+  <p>Enter Your Budgetery Projections for the month (How much do you expect to receive and intend to spend)</p>
+  <a href="budgetentry.html">View your Budget Entries</a>
+
+  <input id= "incomeproj_btn" type="radio" name="Entry Type" value='income'>Income
+    <input id= "expenseproj_btn" type="radio" name="Entry Type" value='expense'>Expense
+
+        <form  id='incomeproj_entry'onsubmit="createBudgetProjection(document.getElementById('incomeproj_btn').value, document.getElementById('incomeproj_cat').value, document.getElementById('incomeproj_amnt').value)" >
+            Income Category:<br>
+            <select name='income_category'id='incomeproj_cat'>
+              <option value="null">--Select an option--</option>
+              <option value="salary"> Salary </option>
+              <option value="gift"> Gift </option>
+            </select><br>
+            Income Amount:<br>
+            <input type="text" name="item_amount" id='incomeproj_amnt'><br>
+            <input type="submit" value="submit">
+        </form>
+        
+        <form  id ='expenseproj_entry' onsubmit="createBudgetProjection(document.getElementById('expenseproj_btn').value, document.getElementById('expenseproj_cat').value, document.getElementById('expenseproj_amnt').value)" >
+            Expense Category:<br>
+            <select name='expense_category'id='expenseproj_cat'>
+              <option value="null">--Select an option--</option>
+              <option value="food"> Food </option>
+              <option value="housing"> Housing </option>
+              <option value="clothing"> Clothing </option>
+              <option value="transport"> Transport </option>
+              <option value="utilities"> Utilities </option>
+              <option value="insurance"> Insurance </option>
+              <option value="giving"> Giving </option>
+              <option value="savings"> Savings </option>
+              <option value="lifestyle"> Lifestyle </option>
+              
+            </select><br>
+            Expense Amount:<br>
+            <input type="text" name="email" id= 'expenseproj_amnt'><br>
+            <input type="submit" value="Submit">
+        </form>
+
+        <script>
+          $(document).ready(function() {
+              $('#incomeproj_entry').hide();
+              $('#expenseproj_entry').hide();
+
+            $('input[type="radio"]').click(function() {
+              if($(this).attr('id') == 'incomeproj_btn') {
+                    $('#incomeproj_entry').show();
+                    $('#expenseproj_entry').hide();           
+                }
+
+               else {
+                    $('#incomeproj_entry').hide();
+                    $('#expenseproj_entry').show();   
+               }
+            });
+          });
+          document.getElementById('welcomeproj').innerHTML = 'Welcome '+userData[currentUser][0];
+
+        </script>
+        <table id = 'budgetProjections'>
+            <tr>
+              <th>EntryType</th>
+              <th>Category</th> 
+              <th>Amount</th>
+
+            </tr>
+
+         </table>
+
+        <script>
+
+        
+        var budgetProjections = JSON.parse(window.localStorage.getItem('budgetProjections'));
+        var userData = JSON.parse(window.localStorage.getItem('userdata'));
+        var currentUser = window.localStorage.getItem('currentUser');
+        console.log (budgetProjections);
+        console.log (currentUser);
+        var toPrint = budgetProjections[currentUser];
+        console.log(toPrint);
+          var size = toPrint.length;
+
+          for (var i=0; i< size; i++){
+
+            var tableRow = document.createElement("tr");
+            // var trnode = document.createTextNode(tableData)            
+
+            for (var j=0; j< toPrint[i].length; j++){
+              var tdnode = document.createTextNode(''+toPrint[i][j]);
+              tableData = document.createElement('td');
+              tableData.appendChild(tdnode);
+              tableRow.appendChild(tableData);
+              console.log(tdnode, tableData, tableRow);
+            }
+                        
+            var group = document.getElementById('budgetProjections');
+            group.appendChild(tableRow);
+
+          }
+          
+        </script>
+
+</body>
+
+</html>

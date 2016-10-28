@@ -1,0 +1,23 @@
+{
+  "name": "bc-21-budget-analysis-application",
+  "version": "1.0.0",
+  "description": "App to analyse and keep track of budget items",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oreban4u/bc-21-Budget-analysis-application.git"
+  },
+  "author": "Oreoluwa Banwo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oreban4u/bc-21-Budget-analysis-application/issues"
+  },
+  "homepage": "https://github.com/oreban4u/bc-21-Budget-analysis-application#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-generator": "^4.13.4"
+  }
+}

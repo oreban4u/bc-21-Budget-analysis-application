@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>
+            Budget Analysis App: Data Page
+        </title>
+        <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-database.js"></script>
+
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyDAzKJCumVBRZ0AbZ_SvzgwVECPWxM5onI",
+            authDomain: "budget-analysis-app-b4ea5.firebaseapp.com",
+            databaseURL: "https://budget-analysis-app-b4ea5.firebaseio.com",
+            storageBucket: "budget-analysis-app-b4ea5.appspot.com",
+            messagingSenderId: "453059033916"
+          };
+          firebase.initializeApp(config);
+          var database = firebase.database();
+          
+          function writeUserData(firstname, lastname, email) {
+            database.ref('users/' + firstname +'_' + lastname).set({
+            'firstname': firstname,
+            'lastname': lastname,
+            'email': email
+            });
+        }
+        </script>
+    </head>
+    
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+        
+
+        <div>
+        <form  onsubmit="writeUserData(document.getElementById('fname').value, document.getElementById('lname').value, document.getElementById('email').value)" >
+            First name:<br>
+            <input type="text" name="firstname" id='fname'><br>
+            Last name:<br>
+            <input type="text" name="lastname" id= 'lname'><br>
+            Email Address:<br>
+            <input type="text" name="email" id= 'email'><br>
+            <input type="submit" value="Submit">
+        </form>
+        
+            <input type="text">
+            <input type="text">
+            <input type="text">
+            <input type="text">
+        </div>
+        <div ng-app="">
+         
+        <p>Input something in the input box:</p>
+        <p>Name: <input type="text" ng-model="name"></p>
+        <p ng-bind="name"></p>
+
+        </div>
+
+
+
+
+
+
+       
+
+    </body>
+
+
+
+</html>

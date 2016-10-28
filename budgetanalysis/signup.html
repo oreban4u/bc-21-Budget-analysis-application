@@ -1,0 +1,51 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up Form</title>
+  <!-- <link rel="stylesheet" href="css/normalize.css"> -->
+  <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/functions.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+<body>
+<!-- action="index.html" method="post"  -->
+  <form  onsubmit="event.preventDefault(); signUp(document.getElementById('f_name').value, document.getElementById('l_name').value, document.getElementById('e_mail').value, document.getElementById('password').value)">
+
+    <h1>Sign Up</h1>
+
+    <fieldset>
+      <legend>Please complete the following</legend>
+      <label for="name">Firstname:</label>
+      <input type="text" id="f_name" name="user_name">
+
+      <label for="name">Lastname:</label>
+      <input type="text" id="l_name" name="user_name">
+
+      <label for="mail">Email Address:</label>
+      <input type="email" id="e_mail" name="user_email">
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="user_password">
+
+      
+    </fieldset>
+
+    
+    <button type="submit">Sign Up</button>
+    <a href='budgetentry.html' id='redirecturl'> Click Here to Proceed</a>
+  </form>
+  <script>
+  // $(document).ready(function() {
+  //           if(window.localStorage.getItem('loggedIn') === 'true'){
+  //             $('#redirecturl').show();
+  //           }
+  //           else{
+  //             $('#redirecturl').hide();
+  //           }
+  //           });
+  </script>
+</body>
+
+</html>
