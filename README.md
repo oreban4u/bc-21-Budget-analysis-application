@@ -1,12 +1,22 @@
 # bc-21-Budget-analysis-application
 Bootcamp Application
 
+##'NO PADDING' BUDGET ANALYSIS APP##
+
+#Introduction#
+
 This is an application to Collect a User's budgetary projections
 and also enter budgetary entries as they occur.
 
 The user is also able after a period click Analyse to determine the state of his projections vs his entries.
 
-*How to Use*
+#Requirements#
+- Local Storage
+- Firebase
+- DOM Manipulation
+
+
+#How to Use#
 
 - Navigate to the project directory
 - run node index.js
