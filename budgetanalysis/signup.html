@@ -11,7 +11,7 @@
 
 <body>
 <!-- action="index.html" method="post"  -->
-  <form  onsubmit="signUp(document.getElementById('f_name').value, document.getElementById('l_name').value, document.getElementById('e_mail').value, document.getElementById('password').value)">
+  <form  onsubmit="event.preventDefault(); signUp(document.getElementById('f_name').value, document.getElementById('l_name').value, document.getElementById('e_mail').value, document.getElementById('password').value)">
 
     <h1>Sign Up</h1>
 
@@ -37,14 +37,14 @@
     <a href='budgetentry.html' id='redirecturl'> Click Here to Proceed</a>
   </form>
   <script>
-  $(document).ready(function() {
-            if(window.localStorage.getItem('loggedIn') === 'true'){
-              $('#redirecturl').show();
-            }
-            else{
-              $('#redirecturl').hide();
-            }
-            });
+  // $(document).ready(function() {
+  //           if(window.localStorage.getItem('loggedIn') === 'true'){
+  //             $('#redirecturl').show();
+  //           }
+  //           else{
+  //             $('#redirecturl').hide();
+  //           }
+  //           });
   </script>
 </body>
 

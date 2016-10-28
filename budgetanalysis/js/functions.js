@@ -28,6 +28,7 @@ function signUp(fname,lname,email,password){
         localStorage.setItem('currentUser', email);
         //console.log(userId)
         localStorage.setItem('loggedIn', 'true')
+        window.location.assign('budgetprojection.html')
       }
       else{
         alert("User already registered");
@@ -46,6 +47,7 @@ function login(username, password){
 
     if (userData[username][2] === password){
       localStorage.setItem('loggedIn', 'true')
+      window.location.assign('budgetentry.html')
        return true;
 
     }
@@ -150,7 +152,7 @@ function createBudgetProjection(entrytype, category, entryvalue){
       var category = neededProjectionData[m][1];
       var projectiontotal = neededProjectionData[m][2];
       var entrytotal = 0;
-      for (var n= 0; n< neededEntry; n++){
+      for (var n= 0; n< neededEntryData.length; n++){
         if(neededEntryData[n][1] === category){
           entrytotal = entrytotal + parseInt(neededEntryData[n][3],10)
         }

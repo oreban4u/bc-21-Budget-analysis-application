@@ -9,7 +9,7 @@
 
 <body>
 
-  <form action="budgetentry.html" method="post">
+  <form onsubmit="event.preventDefault(); login(document.getElementById('e_mail').value, document.getElementById('password').value)">
 
     <h1>Login</h1>
 

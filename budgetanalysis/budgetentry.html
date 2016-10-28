@@ -72,11 +72,7 @@
 
 
 
-        <ul id='budgetEntries'>
-          
-          
-        </ul>
-         <table id = 'testtable'>
+        <table id = 'budgetEntries'>
             <tr>
               <th>EntryType</th>
               <th>Category</th> 
@@ -86,6 +82,13 @@
             </tr>
 
          </table>
+
+         <button id ="doAnalysis" onclick ='monthlyAnalyse()'>Analyse</button>
+         <ul id='analyse'>
+    
+
+        
+        </ul>
 
         <script>
         
@@ -111,7 +114,7 @@
               console.log(tdnode, tableData, tableRow);
             }
                         
-            var group = document.getElementById('testtable');
+            var group = document.getElementById('budgetEntries');
             group.appendChild(tableRow);
 
           }
